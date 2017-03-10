@@ -118,7 +118,7 @@ light.updateState().then(() =>
 
 ```
 
-### Usable (public) Members of `Yeelight`-Class
+### Usable (public) Members of `Yeelight`-Class (read only)
 
 * `light.power` (`true`/`false`)
 * `light.type` (`"unknown"`,`"white"`,`"color"`)
