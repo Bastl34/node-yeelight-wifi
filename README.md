@@ -6,6 +6,7 @@ It should work with the RGBW and White Yeelight-bulbs
 
 ## Installation
 
+(currently not published at npm)
 ```shell
 npm install --save node-yeelight-wifi
 ```
