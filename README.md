@@ -6,7 +6,6 @@ It should work with the RGBW and White Yeelight-bulbs
 
 ## Installation
 
-(currently not published at npm)
 ```shell
 npm install --save node-yeelight-wifi
 ```
@@ -34,7 +33,9 @@ look.on("detected",(light) =>
 Once you have a `Yeelight` (`light`) object from a lookup you can use it like this:
 
 #### `setPower(power,duration)`
+
 Set the power of your Yeelight (on: `true`, off: `false`)
+
 ```js
 light.setPower(true).then(() =>
 {
@@ -46,7 +47,9 @@ light.setPower(true).then(() =>
 ```
 
 #### `setRGB(rgb,duration)`
+
 Set the RGB value (r: 0-255, g: 0-255, b: 0-255)
+
 ```js
 light.setRGB([255,255,0]).then(() =>
 {
@@ -58,7 +61,9 @@ light.setRGB([255,255,0]).then(() =>
 ```
 
 #### `setHSV(hsv,duration)`
+
 Set the HSV value (hue: 0-359, sat: 0-100, value/bright=0-100)
+
 ```js
 light.setRGB([180,70,100]).then(() =>
 {
@@ -70,7 +75,9 @@ light.setRGB([180,70,100]).then(() =>
 ```
 
 #### `setCT(hsv,duration)`
+
 Set the color temp value (1700 ~ 6500)
+
 ```js
 light.setCT(5000).then(() =>
 {
@@ -82,7 +89,9 @@ light.setCT(5000).then(() =>
 ```
 
 #### `setBright(brightness,duration)`
+
 Set the color brightness (0-100)
+
 ```js
 light.setBright(80).then(() =>
 {
@@ -94,7 +103,9 @@ light.setBright(80).then(() =>
 ```
 
 #### `updateState()`
+
 If you want to request a state (color,bright,power) update
+
 ```js
 light.updateState().then(() =>
 {
@@ -108,6 +119,7 @@ light.updateState().then(() =>
 ```
 
 ### Usable (public) Members of `Yeelight`-Class
+
 * `light.power` (`true`/`false`)
 * `light.type` (`"unknown"`,`"white"`,`"color"`)
 * `light.bright` (`0-100`)
@@ -135,9 +147,10 @@ light.on("failed",(error) => { console.log(error); });
 
 ### Examples
 
- * see `examples/examples.js`
+* see `examples/examples.js`
 
-# Licence
+## Licence
+
 Copyright (c) 2017 Bastian Karge
 
 MIT (see License.md)
