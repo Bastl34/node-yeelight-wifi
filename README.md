@@ -139,4 +139,5 @@ light.on("failed",(error) => { console.log(error); });
 
 # Licence
 Copyright (c) 2017 Bastian Karge
+
 MIT (see License.md)
