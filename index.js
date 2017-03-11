@@ -108,8 +108,14 @@ class Yeelight extends EventEmitter
         //on/off state
         this.power = false;
 
+        this.id = "";
+        this.name = "";
+
         //type ("unknown","white","color")
         this.type = "unknown";
+
+        this.firmware = "";
+        this.support = "";
 
         //color values
         this.bright = 0;
@@ -126,31 +132,32 @@ class Yeelight extends EventEmitter
         }
     }
 
-    /*
     init(host,port)
     {
         this.host = host;
         this.port = port;
+
+        //connect and get initial data
+        this.connect();
+        this.updateState().then(() => {}).catch((error =>
+        {
+            console.log(error);
+        }));
     }
-    */
 
     updateBySSDPMessage(ssdpMessage)
     {
         this.id = ssdpMessage.ID;
         this.name = ssdpMessage.NAME || "";
 
-        this.location = ssdpMessage.LOCATION;
         this.model = ssdpMessage.MODEL;
         this.firmware = ssdpMessage.FW_VER;
         this.support = ssdpMessage.SUPPORT;
 
-        this.updatePower(ssdpMessage.POWER);
-
-        this.updateColorbySSDPMessage(ssdpMessage);
-
         //get hostname and port
+        let location = ssdpMessage.LOCATION;
         const regex = /\/\/(.*):(.*)/g;
-        let matches = regex.exec(this.location);
+        let matches = regex.exec(location);
 
         if (matches && matches.length >= 3)
         {
@@ -166,11 +173,9 @@ class Yeelight extends EventEmitter
                 this.type = "color";
         }
 
-        /*
-        console.log("=============");
-        console.log(this.host, this.port);
-        console.log(ssdpMessage);
-        */
+        this.updatePower(ssdpMessage.POWER);
+
+        this.updateColorbySSDPMessage(ssdpMessage);
     }
 
     updateColorbySSDPMessage(ssdpMessage)
@@ -276,14 +281,7 @@ class Yeelight extends EventEmitter
         //create socket
         this.socket = new net.Socket();
 
-        /*
-        this.socket.setTimeout(SOCKET_TIMEOUT,() =>
-        {
-            this.emit('disconnected');
-            this.disconnect();
-        });
-        */
-
+        //data response
         this.socket.on('data', this.parseResponse.bind(this));
 
         this.socket.on('end', (data) =>
@@ -296,14 +294,12 @@ class Yeelight extends EventEmitter
 
         this.socket.connect(this.port, this.host, () =>
         {
-            //console.log("connected");
             this.emit('connected');
             this.connected = true;
         });
 
         this.socket.on('close', (data) =>
         {
-            //console.log("disconnected");
             this.emit('disconnected');
             this.disconnect();
         });
@@ -420,6 +416,8 @@ class Yeelight extends EventEmitter
                                 this.updateCT(obj.ct,obj.bright);
                             else if (obj.color_mode == 3 && "hue" in obj && "sat" in obj)
                                 this.updateHSV(obj.hue,obj.sat,obj.bright);
+
+                            this.colorMode = obj.color_mode;
                         }
                         else
                         {
@@ -461,7 +459,6 @@ class Yeelight extends EventEmitter
                 }
             }
         });
-
     }
 
     sendCommand(method,params)
@@ -471,13 +468,15 @@ class Yeelight extends EventEmitter
             this.connect();
 
         //check message
-        let supportedMethods = this.support.split(" ");
+        let supportedMethods = [];
+        if (this.support)
+            supportedMethods = this.support.split(" ");
 
         let id = this.messageId;
         ++this.messageId;
 
-        //check if method is allowed
-        if (supportedMethods.indexOf(method) != -1 && params && params.length > 0)
+        //check if method is allowed - its also allowed if there is no support set (if light is added via hostname and port and not via ssdp)
+        if ((this.support == "" || supportedMethods.indexOf(method) != -1) && params && params.length > 0)
         {
             let paramsStr = JSON.stringify(params);
 
@@ -502,7 +501,7 @@ class Yeelight extends EventEmitter
             });
         }
         else
-            return Promise.reject(reason);
+            return Promise.reject("method is not supported or empty params are set");
     }
 
     updateState()
