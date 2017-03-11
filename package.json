@@ -1,6 +1,6 @@
 {
     "name": "node-yeelight-wifi",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "node js lib for yeelight bulbs",
     "readmeFilename": "README.md",
     "author": "Bastian Karge",
@@ -10,7 +10,9 @@
     {
         "node-ssdp": "^3.2.0",
         "color": "^1.0.3",
-        "color-temp": "^0.0.2"
+        "color-temp": "^0.0.2",
+        "portscanner": "^2.1.1",
+        "node-arp": "^1.0.5"
     },
     "keywords": [
         "light",
