@@ -55,12 +55,13 @@ class Lookup extends EventEmitter
 
             if (!light)
             {
+                light = new Yeelight(data);
+                this.lights.push(light);
+
                 //get mac (but it could be that there is no mac because of different (routed) net)
-                arp.getMAC(ip, (err, mac) => 
+                arp.getMAC(light.host, (err, mac) => 
                 {
-                    light = new Yeelight(data);
                     light.mac = (!err) ? mac : "";
-                    this.lights.push(light);
                     this.emit('detected', light);
                 });
             }
