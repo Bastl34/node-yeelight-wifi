@@ -23,7 +23,7 @@ setTimeout(() =>
 
     let light = lights[0];
 
-    // ******************* events *******************
+    // ******************* state updates *******************
     light.on("connected",() =>
     {
         console.log("connected");
@@ -56,7 +56,14 @@ setTimeout(() =>
     }));
 
 
-
+    light.updateState().then(() =>
+    {
+        console.log("updateState promise resolved");
+    }).catch((error =>
+    {
+        console.log("promise rejected");
+        console.log(error);
+    }));
 
     //light.setBright(10);
     //light.setHSV([298,100,100],1000);
