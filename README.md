@@ -2,7 +2,7 @@
 
 "node-yeelight-wifi" is a node.js lib for controlling via wifi connected **Yeelights**.
 
-It should work with the RGBW and White Yeelight-bulbs
+It works with the RGBW bulbs, white bulbs and ceiling lights.
 
 ## Installation
 
@@ -151,6 +151,6 @@ light.on("failed",(error) => { console.log(error); });
 
 ## Licence
 
-Copyright (c) 2017 Bastian Karge
+Copyright (c) Bastian Karge
 
 MIT (see License.md)
