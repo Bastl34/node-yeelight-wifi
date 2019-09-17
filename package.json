@@ -14,7 +14,8 @@
         "portscanner": "^2.1.1",
         "node-arp": "^1.0.5"
     },
-    "keywords": [
+    "keywords":
+    [
         "light",
         "yeelight",
         "yeelight wifi"
