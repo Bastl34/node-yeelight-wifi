@@ -107,7 +107,10 @@ class Yeelight extends EventEmitter
         if (this.support)
         {
             let supported = this.support.split(" ");
-            if (supported.indexOf("set_rgb") != -1 || supported.indexOf("set_hsv") != -1 || supported.indexOf("set_ct_abx") != -1)
+
+            if (supported.indexOf("set_ct_abx") != -1)
+                this.type = "white";
+            if (supported.indexOf("set_rgb") != -1 || supported.indexOf("set_hsv") != -1)
                 this.type = "color";
         }
 

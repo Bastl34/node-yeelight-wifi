@@ -7,7 +7,7 @@ let look = new Lookup();
 
 look.on("detected",(light) =>
 {
-    console.log("new yeelight detected: host="+light.host);
+    console.log("new yeelight detected: host=" + light.host + " type=" + light.type);
 });
 
 
@@ -46,14 +46,17 @@ setTimeout(() =>
 
 
     // ******************* setter *******************
-    light.setRGB([255,255,0]).then(() =>
+    if (light.type == "color")
     {
-        console.log("setRGB promise resolved");
-    }).catch((error =>
-    {
-        console.log("promise rejected");
-        console.log(error);
-    }));
+        light.setRGB([255,255,0]).then(() =>
+        {
+            console.log("setRGB promise resolved");
+        }).catch((error =>
+        {
+            console.log("promise rejected");
+            console.log(error);
+        }));
+    }
 
     light.updateState().then(() =>
     {
@@ -64,7 +67,15 @@ setTimeout(() =>
         console.log(error);
     }));
 
-    //light.setBright(10);
+
+    setInterval(() =>
+    {
+        if (light.bright < 100)
+            light.setBright(100);
+        else
+            light.setBright(10);
+    }, 1000);
+    //light.setBright(100);
     //light.setHSV([298,100,100],1000);
     //light.setPower('on');
     //light.setCT(5000);
