@@ -55,7 +55,6 @@ setTimeout(() =>
         console.log(error);
     }));
 
-
     light.updateState().then(() =>
     {
         console.log("updateState promise resolved");

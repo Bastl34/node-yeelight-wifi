@@ -57,7 +57,7 @@ class Yeelight extends EventEmitter
 
     getState()
     {
-        let state = 
+        let state =
         {
             type: this.type,
             power: this.power,
@@ -205,7 +205,7 @@ class Yeelight extends EventEmitter
     updatePower(power)
     {
         this.power = (power && (""+power).toLowerCase() != "off" && (""+power).toLowerCase() != "false" && power != "0");
-        
+
         this.emit('stateUpdate',this);
     }
 
@@ -274,7 +274,7 @@ class Yeelight extends EventEmitter
         let responses = res.toString('utf8');
 
         //console.log(" ==== res =====");
-        //console.log(response);
+        //console.log(responses);
 
         //sometimes there are multiple messages in one message
         let splits = responses.split("\r\n");
@@ -419,7 +419,7 @@ class Yeelight extends EventEmitter
             let paramsStr = JSON.stringify(params);
 
             let str = '{"id":'+id+',"method":"'+method+'","params":'+paramsStr+'}'+'\r\n';
-            
+
             return new Promise((resolve, reject) =>
             {
                 let timeout = setTimeout(() =>

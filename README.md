@@ -4,6 +4,8 @@
 
 It works with the RGBW bulbs, white bulbs and ceiling lights.
 
+You need to activate "Lan control" on your lights. (see [Troubleshooting](#Troubleshooting))
+
 ## Installation
 
 ```shell
@@ -148,6 +150,12 @@ light.on("failed",(error) => { console.log(error); });
 ### Examples
 
 * see `examples/examples.js`
+
+### Troubleshooting
+
+* Yeelight is not detected?
+  * enable "LAN Control" on your yeelight
+  * https://www.yeelight.com/faqs/lan_control
 
 ## Licence
 

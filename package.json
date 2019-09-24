@@ -1,32 +1,28 @@
 {
     "name": "node-yeelight-wifi",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "node js lib for yeelight bulbs",
     "readmeFilename": "README.md",
     "author": "Bastian Karge",
-    "license" : "MIT",
+    "license": "MIT",
     "main": "index.js",
-    "dependencies":
-    {
-        "node-ssdp": "^3.2.0",
-        "color": "^1.0.3",
-        "color-temp": "^0.0.2",
-        "portscanner": "^2.1.1",
-        "node-arp": "^1.0.5"
+    "dependencies": {
+        "node-ssdp": "~4.0.0",
+        "color": "^3.1.2",
+        "color-temp": "~0.0.2",
+        "portscanner": "~2.2.0",
+        "node-arp": "^1.0.6"
     },
-    "keywords":
-    [
+    "keywords": [
         "light",
         "yeelight",
         "yeelight wifi"
     ],
-    "bugs":
-    {
+    "bugs": {
         "url": "https://github.com/Bastl34/node-yeelight-wifi/issues"
     },
     "homepage": "https://github.com/Bastl34/node-yeelight-wifi#readme",
-    "repository":
-    {
+    "repository": {
         "type": "git",
         "url": "https://github.com/Bastl34/node-yeelight-wifi"
     }

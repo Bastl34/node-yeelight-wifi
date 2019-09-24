@@ -59,7 +59,7 @@ class Lookup extends EventEmitter
                 this.lights.push(light);
 
                 //get mac (but it could be that there is no mac because of different (routed) net)
-                arp.getMAC(light.host, (err, mac) => 
+                arp.getMAC(light.host, (err, mac) =>
                 {
                     light.mac = (!err) ? mac : "";
                     this.emit('detected', light);
@@ -146,7 +146,7 @@ class Lookup extends EventEmitter
                         if (status == "open")
                         {
                             //get mac (but it could be that there is no mac because of different (routed) net)
-                            arp.getMAC(ip, (err, mac) => 
+                            arp.getMAC(ip, (err, mac) =>
                             {
                                 //check if already added
                                 let light = null;
@@ -164,7 +164,7 @@ class Lookup extends EventEmitter
                                 }
                             });
                         }
-                            
+
                         //on done -> end
                         if (checks == checkAmount)
                             resolve();
