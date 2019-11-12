@@ -67,7 +67,7 @@ light.setRGB([255,255,0]).then(() =>
 Set the HSV value (hue: 0-359, sat: 0-100, value/bright=0-100)
 
 ```js
-light.setRGB([180,70,100]).then(() =>
+light.setHSV([180,70,100]).then(() =>
 {
     console.log("success");
 }).catch((error =>
