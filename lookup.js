@@ -124,9 +124,9 @@ class Lookup extends EventEmitter
 
         //filter doubles
         ipAddresses = ipAddresses.filter((item, i, self) =>
-		{
-			return self.lastIndexOf(item) == i;
-		});
+        {
+                return self.lastIndexOf(item) == i;
+        });
 
         //loop over all Ip'S and check for opend ports (tinkerforge ports)
         let checkAmount = ipAddresses.length * 254;
